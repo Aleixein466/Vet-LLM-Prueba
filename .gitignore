@@ -1,0 +1,51 @@
+# Pesos de modelos / checkpoints (2.3 GB) - GitHub rechaza archivos >100 MB
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# Cachés de herramientas (407 MB)
+cache/
+.ipynb_checkpoints/
+
+# PDFs de casos clínicos (36 MB, datos sensibles / con derechos de autor)
+Datos/
+
+# --- Datos DERIVADOS de esos PDFs: texto extraído de tesis y revistas ---
+# Contiene nombres de personas reales, correos de investigadores, historias
+# clínicas de pacientes veterinarios y material con derechos de autor.
+# El .bin tokenizado también es recuperable porque se versiona el tokenizer.
+data/raw/vet-real-limpio.txt
+data/cleaned/
+data/sft/sft_real.jsonl
+data/rag/
+data/train/train.bin
+data/train/train_bpe.bin
+data/validation/val.bin
+data/validation/val_bpe.bin
+logs/ingest.log
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Sistema operativo / editores
+Thumbs.db
+.DS_Store
+desktop.ini
+.idea/
+.vscode/
+*.swp
+
+# Entornos locales
+.env
+.env.local

@@ -1,0 +1,87 @@
+{
+  "grupos": [
+    {
+      "tema": "alimentación",
+      "especie": "perro",
+      "n": 3,
+      "jaccard_medio": 0.0
+    },
+    {
+      "tema": "chocolate",
+      "especie": "conejo",
+      "n": 4,
+      "jaccard_medio": 0.219
+    },
+    {
+      "tema": "convulsiones",
+      "especie": "conejo",
+      "n": 2,
+      "jaccard_medio": 0.0
+    },
+    {
+      "tema": "desparasito",
+      "especie": "caballo",
+      "n": 2,
+      "jaccard_medio": 0.0
+    },
+    {
+      "tema": "envenenamiento",
+      "especie": "conejo",
+      "n": 2,
+      "jaccard_medio": 0.0
+    },
+    {
+      "tema": "esterilización",
+      "especie": "conejo",
+      "n": 3,
+      "jaccard_medio": 0.333
+    },
+    {
+      "tema": "golpe de calor",
+      "especie": "conejo",
+      "n": 2,
+      "jaccard_medio": 0.0
+    },
+    {
+      "tema": "pulgas",
+      "especie": "conejo",
+      "n": 4,
+      "jaccard_medio": 0.0
+    },
+    {
+      "tema": "sangrado",
+      "especie": "conejo",
+      "n": 5,
+      "jaccard_medio": 0.06
+    },
+    {
+      "tema": "urgencia cojera",
+      "especie": "conejo",
+      "n": 3,
+      "jaccard_medio": 0.333
+    },
+    {
+      "tema": "urgencias",
+      "especie": "conejo",
+      "n": 2,
+      "jaccard_medio": 0.8
+    },
+    {
+      "tema": "vacunación",
+      "especie": "conejo",
+      "n": 2,
+      "jaccard_medio": 0.143
+    },
+    {
+      "tema": "vacunas",
+      "especie": "conejo",
+      "n": 3,
+      "jaccard_medio": 0.067
+    }
+  ],
+  "jaccard_global": 0.15,
+  "n_grupos": 13,
+  "checkpoint": "checkpoints\\tiny-18m-sft\\last.pt"
+}
+
+---STDERR---

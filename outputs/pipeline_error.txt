@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "D:\VET-TINY-LLM\scripts\pipeline_noche.py", line 215, in <module>
+    main()
+  File "D:\VET-TINY-LLM\scripts\pipeline_noche.py", line 75, in main
+    save_file(sd["model"], final / "model.safetensors")
+  File "C:\VET-TINY-LLM-venv\Lib\site-packages\safetensors\torch.py", line 324, in save_file
+    _flatten_as_ptr(tensors, keep_references_alive), filename, metadata=metadata
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\VET-TINY-LLM-venv\Lib\site-packages\safetensors\torch.py", line 569, in _flatten_as_ptr
+    _evaluate_tensors_for_save(tensors)
+  File "C:\VET-TINY-LLM-venv\Lib\site-packages\safetensors\torch.py", line 557, in _evaluate_tensors_for_save
+    raise RuntimeError(
+RuntimeError: 
+            Some tensors share memory, this will lead to duplicate memory on disk and potential differences when loading them again: [{'wte.weight', 'lm_head.weight'}].
+            A potential way to correctly save your model is to use `save_model`.
+            More information at https://huggingface.co/docs/safetensors/torch_shared_tensors
+            

@@ -1,0 +1,7 @@
+prefs=120 beta=0.1
+[dpo] step=10 loss=0.000 adv=+126.273
+[dpo] step=20 loss=0.000 adv=+149.611
+[dpo] step=30 loss=0.000 adv=+150.112
+dpo done -> checkpoints\tiny-18m-dpo\last.pt
+
+---STDERR---

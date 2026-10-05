@@ -1,0 +1,13 @@
+{
+  "metricas": {
+    "perplejidad_val": 1.11,
+    "qa_recall_medio": 0.72
+  },
+  "umbrales": {
+    "ppl_max": 5.0,
+    "recall_min": 0.15
+  },
+  "observaciones": "val_loss estable~0.1, QA base comparable a run anterior",
+  "razon_tecnica": "Criterios deterministas cumplidos",
+  "decision": "SUFICIENTE_SFT"
+}

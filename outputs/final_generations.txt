@@ -1,0 +1,25 @@
+# Generaciones FINALES (checkpoint BASE desplegado, sin editar)
+_Respuestas experimentales, no conocimiento clínico confirmado._
+## ¿Qué información se debe recopilar inicialmente en un perro con vómito?
+ Tras el plan de cachorro, refuerzo anual según vacuna y normativa local. Anota fecha y lote en la cartilla.
+(recall-vs-fuente: auto)
+## ¿Qué signos pueden indicar una emergencia veterinaria?
+ Si hay dificultad respiratoria, sangrado que no cede, convulsiones, abdomen hinchado o decaimiento grave. No esperes 24 horas.
+(recall-vs-fuente: auto)
+## ¿Qué información es necesaria antes de interpretar un caso clínico?
+ Presiona con gasa limpia durante 10 minutos sin levantar para mirar. No uses torniquete salvo indicación veterinaria y acude a clínica.
+(recall-vs-fuente: auto)
+## Explique de manera sencilla qué es la ehrlichiosis canina.
+ ¿Cada cuánto desparasito a mi vaca?
+Respuesta: Cada 3 meses en adultos y cada 2 semanas hasta los 3 meses en cachorros, con producto adecuado al peso (400 a 700 kg).
+(recall-vs-fuente: auto)
+## ¿Qué parámetros básicos deben revisarse durante un examen físico veterinario?
+ Presiona con gasa limpia durante 10 minutos sin levantar para mirar. No uses torniquete salvo indicación veterinaria y acude a clínica.
+(recall-vs-fuente: auto)
+## Mi perro comió chocolate, ¿qué hago?
+ Acude de inmediato al veterinario con la etiqueta del producto. No induzcas el vómito en casa sin indicación profesional ni le des leche ni remedios caseros. Vigila vómitos, agitación o convulsiones.
+(recall-vs-fuente: auto)
+## Mi gato se cayó de un tercer piso, ¿qué hago?
+ ¿Cada cuánto desparasito a mi perro?
+Respuesta: Cada 3 meses en adultos y cada 2 semanas hasta los 3 meses en cachorros, con producto adecuado al peso (5 a 40 kg).
+(recall-vs-fuente: auto)

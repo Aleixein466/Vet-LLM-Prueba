@@ -1,0 +1,85 @@
+VET-TINY-GPT RAG tests 2026-10-05T13:42:59.500108+00:00
+threshold=0.18 min_shared=2 k=2
+embedding: TF-IDF numpy vocab=17278 docs=2061 cosine
+checkpoint: checkpoints/pretraining/final/model.pt
+
+== MODO A (sin RAG) vs MODO B (con RAG) ==
+--- mi perro lo golpeo un carro en la pata y lo veo agitado
+[A:GENERATIVO_SIN_RAG] • Triage es posible que no se ha sido óseo -
+más de urgencias, y acude al veterinario.
+[B:EXTRACTIVO/RECUPERA] Presiona con gasa limpia durante 10 minutos sin levantar para mirar. No uses torniquete salvo indicación veterinaria y acude a clínica. [extractivo]
+
+--- cristobal colon comio perros
+[A:GENERATIVO_SIN_RAG] Síndrome de cada 3 meses, que puede causar cama a
+seguir el paciente es una inflamatoria.
+[B:RECHAZADO/SIN_EVIDENCIA] No encontré información veterinaria relevante para responder esa pregunta en mi base. Pregunta sobre vacunas, desparasitación, alimentación, constantes o urgencias (intoxicaciones, convulsiones, sangrados).
+
+--- los dinosaurios comian perros?
+[A:GENERATIVO_SIN_RAG] Sí, frecuencia cardiaca 60 a 140 lpm, temperatura 38.3 a 39.2 °C. Medir en reposo y anotar en la ficha clínica.
+[B:RECHAZADO/FUERA_DE_AMBITO] Eso está fuera de mi ámbito: solo respondo temas de salud animal (vacunas, desparasitación, alimentación, constantes, urgencias). Reformula tu pregunta sobre tu mascota.
+
+--- ¿qué es la ehrlichiosis canina?
+[A:GENERATIVO_SIN_RAG] Sí, reduce camadas no deseadas y ciertos tumores. Requiere ayuno de 8 horas y control de la herida durante 10 días.
+[B:EXTRACTIVO/RECUPERA] | Equine | Anemia | Treatment
+Introducción
+La ehrlichiosis y anaplasmosis son un grupo de enfermedades
+producidas por una bacteria gram negativa intracelular obligada,
+transmitida por garrapatas y clasific ada de acuerdo con la especificidad
+del hosp
+
+--- ¿qué signos tiene un perro con ehrlichiosis?
+[A:GENERATIVO_SIN_RAG] Síndo debido a que la
+Respuesta: Si hay dificultad respiratoria, sangrado que no cede, convulsiones, abdomen hinchado o decaimiento grave. No esperes 24 horas.
+[B:EXTRACTIVO/RECUPERA] Veterinaria perro. signos de alarma en perros: decaimiento, anorexia más de 24 h, vómitos repetidos, diarrea con sangre, dificultad respiratoria o fiebre (38.3 a 39.2 °C). Acudir a clínica. [extractivo]
+
+== 6 TESTS ==
+TEST 1 [PASS] ¿Qué signos presenta un perro con ehrlichiosis?
+  esperado: RECUPERAR información sobre ehrlichiosis/signos (doc con 'signos')
+  obtenido: RECUPERA/EXTRACTIVO
+  scores: [{'doc': 1423, 'score': 0.3392, 'raw': 0.1892, 'shared': ['perro', 'signos']}, {'doc': 1632, 'score': 0.1912, 'raw': 0.1912, 'shared': ['presenta', 'signos']}]
+  respuesta: Veterinaria perro. signos de alarma en perros: decaimiento, anorexia más de 24 h, vómitos repetidos, diarrea con sangre, dificultad respiratoria o fiebre (38.3 a 39.2 °C). Acudir a clínica. [extractivo]
+
+TEST 2 [PASS] ¿Qué información se debe recopilar en un perro con vómito?
+  esperado: RECUPERAR información sobre vómito/historia clínica
+  obtenido: RECUPERA/EXTRACTIVO
+  scores: [{'doc': 1348, 'score': 0.4125, 'raw': 0.2625, 'shared': ['perro', 'vomito']}, {'doc': 1347, 'score': 0.3668, 'raw': 0.2168, 'shared': ['perro', 'vomito']}]
+  respuesta: Urgencia veterinaria perro. torsión gástrica en el perro (razas grandes): abdomen hinchado y arcadas sin vómito. Urgencia quirúrgica: acude de inmediato. [extractivo]
+
+TEST 3 [PASS] ¿Cuál es la capital de Francia?
+  esperado: NO recuperar (RECHAZADO), nada de envenenamiento
+  obtenido: SIN_EVIDENCIA/RECHAZADO
+  scores: []
+  respuesta: No encontré información veterinaria relevante para responder esa pregunta en mi base. Pregunta sobre vacunas, desparasitación, alimentación, constantes o urgencias (intoxicaciones, convulsiones, sangrados).
+
+TEST 4 [PASS] ¿Los dinosaurios comían perros?
+  esperado: NO recuperar envenenamiento (RECHAZADO)
+  obtenido: FUERA_DE_AMBITO/RECHAZADO
+  scores: []
+  respuesta: Eso está fuera de mi ámbito: solo respondo temas de salud animal (vacunas, desparasitación, alimentación, constantes, urgencias). Reformula tu pregunta sobre tu mascota.
+
+TEST 5 [PASS] ¿Quién fue Cristóbal Colón?
+  esperado: NO recuperar información veterinaria (RECHAZADO)
+  obtenido: SIN_EVIDENCIA/RECHAZADO
+  scores: []
+  respuesta: No encontré información veterinaria relevante para responder esa pregunta en mi base. Pregunta sobre vacunas, desparasitación, alimentación, constantes o urgencias (intoxicaciones, convulsiones, sangrados).
+
+TEST 6 [PASS] ¿Qué es la ehrlichiosis canina?
+  esperado: RECUPERAR información relevante (doc con 'ehrlichiosis')
+  obtenido: RECUPERA/EXTRACTIVO
+  scores: [{'doc': 2020, 'score': 0.2794, 'raw': 0.2794, 'shared': ['canina', 'ehrlichiosis', 'que']}, {'doc': 1258, 'score': 0.2194, 'raw': 0.2194, 'shared': ['canina', 'ehrlichiosis']}]
+  respuesta: | Equine | Anemia | Treatment
+Introducción
+La ehrlichiosis y anaplasmosis son un grupo de enfermedades
+producidas por una bacteria gram negativa intracelular obligada,
+transmitida por garrapatas y clasific ada de acuerdo con la especificidad
+del hosp
+
+TEST 7 [PASS] mi can vomita sangre y tiene diarrea
+  esperado: RESCATE semántico (TF-IDF rechaza, MiniLM rescata parvovirosis)
+  obtenido: RECUPERA/EXTRACTIVO
+  scores: [{'doc': 1420, 'score': 0.7109, 'raw': 0.7109, 'shared': []}, {'doc': 1344, 'score': 0.6816, 'raw': 0.6816, 'shared': []}]
+  respuesta: URGENTE: si hay intoxicación, convulsiones, sangrado, dificultad respiratoria o decaimiento grave, acude al veterinario cuanto antes. No mediques por tu cuenta.
+
+Veterinaria perro. parvovirosis en perros: vómitos, diarrea hemorrágica y deshidratación
+
+RESUMEN: 7 PASS / 0 FAIL de 7

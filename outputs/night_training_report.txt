@@ -1,0 +1,14 @@
+ventana: 2026-09-28 00:05 -> 02:21
+step_inicial: 0
+step_final: 3000
+tokens_corpus: 408099
+tokens_procesados_aprox: 6144000
+tokens_sec_aprox: 750
+loss_visto_inicial: 9.52
+loss_final_train: 0.09
+val_loss: 0.1
+perplejidad: 1.11
+lr_final: 0.0
+checkpoints: 7
+config: configs/tiny-18m.yaml
+device: CPU

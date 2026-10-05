@@ -1,0 +1,30 @@
+{
+  "base": {
+    "perplejidad_val": 1.11,
+    "qa_recall_medio": 0.72,
+    "qa_accuracy": 0.762,
+    "qa_n": 42,
+    "params_M": 17.62,
+    "minutos": 2.7
+  },
+  "sft_40": {
+    "perplejidad_val": 1.13,
+    "qa_recall_medio": 0.227,
+    "qa_accuracy": 0.238,
+    "qa_n": 42,
+    "params_M": 17.62,
+    "minutos": 2.6
+  },
+  "sft_120": {
+    "perplejidad_val": 1.16,
+    "qa_recall_medio": 0.026,
+    "qa_accuracy": 0.024,
+    "qa_n": 42,
+    "params_M": 17.62,
+    "minutos": 2.1
+  },
+  "consistencia_base": 0.609,
+  "consistencia_sft": 0.15,
+  "despliegue": "checkpoints/pretraining/final/model.pt (base gana en QA held-out y consistencia)",
+  "conclusion": "SFT degrada QA: 0.762->0.238->0.024. No desplegar SFT con estos datos."
+}

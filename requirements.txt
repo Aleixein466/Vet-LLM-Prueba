@@ -1,0 +1,16 @@
+# 1) pip install torch --index-url https://download.pytorch.org/whl/cpu
+# 2) pip install -r requirements.txt
+tiktoken>=0.7
+pyyaml>=6.0
+tqdm>=4.66
+numpy>=1.26
+# Web/entorno Streamlit (solo app/, no entrenamiento)
+streamlit>=1.30
+matplotlib>=3.8
+safetensors>=0.4
+psutil>=5.9
+# Ingesta de PDFs reales (src/data/ingest_pdfs.py)
+pypdf>=4.0
+# RAG hibrido (src/rag/embeddings.py) + BPE propio (src/tokenizer/train_bpe.py)
+sentence-transformers>=3.0
+tokenizers>=0.20

@@ -1,0 +1,75 @@
+# VET-TINY-LLM variante BPE propio 16k (requiere train_bpe.py + build_dataset_bpe.py).
+# Directorios SEPARADOS: no toca checkpoints/tiny-18m ni train.bin (conviven).
+model:
+  vocab_size: 16000            # BPE propio, no tiktoken
+  block_size: 128
+  n_layer: 6
+  n_head: 4
+  n_embd: 256
+  dropout: 0.0
+  bias: false
+  tie_weights: true
+
+tokenizer:
+  name: "bpe-propio"
+  file: "data/tokenizer/bpe16k/tokenizer.json"
+  eos_token: "[EOS]"
+  corpus_glob: "data/raw/*.txt"
+
+data:
+  raw_dir: "data/raw"
+  train_file: "data/train/train_bpe.bin"
+  val_file: "data/validation/val_bpe.bin"
+  sft_train: "data/sft/sft_train.jsonl"
+  sft_val: "data/sft/sft_val.jsonl"
+  sft_extra: "data/sft/sft_real.jsonl"
+  prefs_file: "data/sft/prefs.jsonl"
+  block_size: 128
+  train_split: 0.9
+
+training:
+  batch_size: 16
+  max_steps: 3000
+  eval_every: 250
+  save_every: 500
+  lr: 3.0e-4
+  weight_decay: 0.01
+  warmup_steps: 200
+  grad_clip: 1.0
+  seed: 42
+  checkpoint_dir: "checkpoints/tiny-18m-bpe"
+  resume: true
+
+sft:
+  base_checkpoint: "checkpoints/tiny-18m-bpe/last.pt"
+  batch_size: 8
+  max_steps: 40
+  lr: 2.0e-5
+  warmup_steps: 10
+  grad_clip: 1.0
+  eval_every: 100
+  checkpoint_dir: "checkpoints/tiny-18m-bpe-sft"
+
+dpo:
+  base_checkpoint: "checkpoints/tiny-18m-bpe-sft/last.pt"
+  batch_size: 4
+  max_steps: 30
+  lr: 5.0e-5
+  beta: 0.1
+  warmup_steps: 5
+  checkpoint_dir: "checkpoints/tiny-18m-bpe-dpo"
+
+inference:
+  checkpoint: "checkpoints/tiny-18m-bpe/last.pt"   # PROVISIONAL: cambiar a final tras eval
+  temperature: 0.0
+  top_k: 40
+  top_p: 0.9
+  repetition_penalty: 1.1
+  max_new_tokens: 80
+
+evaluation:
+  checkpoint: "checkpoints/tiny-18m-bpe-sft/last.pt"
+  ppl_batches: 50
+  qa_max: 60
+  out_metrics: "outputs/metricas_bpe.json"
+  out_examples: "outputs/ejemplos_bpe.md"

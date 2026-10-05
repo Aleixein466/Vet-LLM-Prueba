@@ -1,0 +1,74 @@
+# VET-TINY-LLM — GPT decoder-only ~18M (rango pedido: 12M–77M), CPU-only
+model:
+  vocab_size: 50257        # tiktoken gpt2
+  block_size: 128
+  n_layer: 6
+  n_head: 4
+  n_embd: 256
+  dropout: 0.0
+  bias: false
+  tie_weights: true
+
+tokenizer:
+  name: "tiktoken"
+  encoding: "gpt2"
+  eot_token: 50256        # <|endoftext|> como EOS
+  corpus_glob: "data/raw/*.txt"
+
+data:
+  raw_dir: "data/raw"
+  train_file: "data/train/train.bin"
+  val_file: "data/validation/val.bin"
+  sft_train: "data/sft/sft_train.jsonl"
+  sft_val: "data/sft/sft_val.jsonl"
+  sft_extra: "data/sft/sft_real.jsonl"
+  prefs_file: "data/sft/prefs.jsonl"
+  block_size: 128
+  train_split: 0.9
+
+training:              # Paso 5: pretraining (predecir siguiente token, Cross-Entropy + AdamW)
+  batch_size: 16
+  max_steps: 3000
+  eval_every: 250
+  save_every: 500
+  lr: 3.0e-4
+  weight_decay: 0.01
+  warmup_steps: 200
+  grad_clip: 1.0
+  seed: 42
+  checkpoint_dir: "checkpoints/tiny-18m"
+  resume: true
+
+sft:                   # Paso 7a: SFT (Supervised Fine-Tuning)
+  base_checkpoint: "checkpoints/tiny-18m/last.pt"
+  batch_size: 8
+  max_steps: 40
+  lr: 2.0e-5
+  warmup_steps: 10
+  grad_clip: 1.0
+  eval_every: 100
+  checkpoint_dir: "checkpoints/tiny-18m-sft"
+
+dpo:                   # Paso 7b: DPO (alineamiento por preferencias)
+  base_checkpoint: "checkpoints/tiny-18m-sft/last.pt"
+  batch_size: 4
+  max_steps: 30
+  lr: 5.0e-5
+  beta: 0.1
+  warmup_steps: 5
+  checkpoint_dir: "checkpoints/tiny-18m-dpo"
+
+inference:
+  checkpoint: "checkpoints/pretraining/final/model.pt"
+  temperature: 0.0
+  top_k: 40
+  top_p: 0.9
+  repetition_penalty: 1.1
+  max_new_tokens: 80
+
+evaluation:
+  checkpoint: "checkpoints/tiny-18m-sft/last.pt"
+  ppl_batches: 50
+  qa_max: 60
+  out_metrics: "outputs/metricas.json"
+  out_examples: "outputs/ejemplos.md"

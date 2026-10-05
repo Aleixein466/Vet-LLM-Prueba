@@ -1,0 +1,9 @@
+params=17.62M base=checkpoints\tiny-18m\last.pt
+sft_train=238 replay_tokens=367289
+[sft] step=10 loss=5.766 (sft=11.426 pt=0.107)
+[sft] step=20 loss=4.287 (sft=8.469 pt=0.104)
+[sft] step=30 loss=3.096 (sft=6.093 pt=0.099)
+[sft] step=40 loss=2.974 (sft=5.834 pt=0.115)
+sft done -> checkpoints\tiny-18m-sft\last.pt
+
+---STDERR---

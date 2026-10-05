@@ -1,0 +1,10 @@
+{
+  "perplejidad_val": 1.11,
+  "qa_recall_medio": 0.72,
+  "qa_accuracy": 0.762,
+  "qa_n": 42,
+  "params_M": 17.62,
+  "minutos": 2.7
+}
+
+---STDERR---

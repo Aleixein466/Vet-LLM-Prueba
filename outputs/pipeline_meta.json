@@ -1,0 +1,23 @@
+{
+  "inicio": "2026-09-28T07:04:24.846430",
+  "errores": [],
+  "decision": "SUFICIENTE_SFT",
+  "fin": "2026-09-28T07:15:17.266623",
+  "web_ok": true,
+  "metricas_base": {
+    "perplejidad_val": 1.11,
+    "qa_recall_medio": 0.72,
+    "qa_accuracy": 0.762,
+    "qa_n": 42,
+    "params_M": 17.62,
+    "minutos": 2.7
+  },
+  "metricas_sft": {
+    "perplejidad_val": 1.13,
+    "qa_recall_medio": 0.227,
+    "qa_accuracy": 0.238,
+    "qa_n": 42,
+    "params_M": 17.62,
+    "minutos": 2.6
+  }
+}

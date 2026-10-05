@@ -1,0 +1,834 @@
+{
+  "fecha": "2026-10-05T13:42:59.500108+00:00",
+  "cfg": "configs/tiny-18m.yaml",
+  "checkpoint": "checkpoints/pretraining/final/model.pt",
+  "index": "data/rag/index",
+  "top_k": 2,
+  "threshold": 0.18,
+  "min_shared_terms": 2,
+  "embedding": "TF-IDF numpy vocab=17278 docs=2061 cosine",
+  "modo_comparacion": [
+    {
+      "query": "mi perro lo golpeo un carro en la pata y lo veo agitado",
+      "modo_a_sin_rag": {
+        "mode": "GENERATIVO_SIN_RAG",
+        "respuesta": "• Triage es posible que no se ha sido óseo -\nmás de urgencias, y acude al veterinario."
+      },
+      "modo_b_con_rag": {
+        "mode": "EXTRACTIVO",
+        "decision": "RECUPERA",
+        "threshold": 0.18,
+        "candidatos": [
+          {
+            "doc": 98,
+            "raw_score": 0.2304,
+            "shared": [
+              "carro"
+            ],
+            "n_shared": 1,
+            "text": "2022\nAnamnesis:\nPaciente ingresa por urgencias al ser atropellada por un carro cuando se encontraban\npaseándola en el parque y se cruzó la calle sola."
+          },
+          {
+            "doc": 1030,
+            "raw_score": 0.2188,
+            "shared": [
+              "pata",
+              "perro"
+            ],
+            "n_shared": 2,
+            "text": "Pregunta: Mi perro sangra mucho de una pata, ¿qué hago?\nRespuesta: Presiona con gasa limpia durante 10 minutos sin levantar para mirar. No uses torniquete salvo indicación veterinaria y acude a clínica."
+          },
+          {
+            "doc": 1052,
+            "raw_score": 0.1995,
+            "shared": [
+              "pata",
+              "perro"
+            ],
+            "n_shared": 2,
+            "text": "Pregunta: ¿Cuándo una cojera de el perro es urgencia?\nRespuesta: Si no apoya la pata, hay inflamación grande, llanto de dolor o fue tras un golpe o atropello. Si solo cojea leve y apoya, pide cita pronto."
+          },
+          {
+            "doc": 1025,
+            "raw_score": 0.1514,
+            "shared": [
+              "pata"
+            ],
+            "n_shared": 1,
+            "text": "Pregunta: Mi gato sangra mucho de una pata, ¿qué hago?\nRespuesta: Presiona con gasa limpia durante 10 minutos sin levantar para mirar. No uses torniquete salvo indicación veterinaria y acude a clínica."
+          }
+        ],
+        "seleccionados": [
+          {
+            "doc": 1030,
+            "raw_score": 0.2188,
+            "shared": [
+              "pata",
+              "perro"
+            ],
+            "n_shared": 2,
+            "text": "Pregunta: Mi perro sangra mucho de una pata, ¿qué hago?\nRespuesta: Presiona con gasa limpia durante 10 minutos sin levantar para mirar. No uses torniquete salvo indicación veterinaria y acude a clínica.",
+            "bonus": 0.15,
+            "score": 0.3688
+          },
+          {
+            "doc": 1052,
+            "raw_score": 0.1995,
+            "shared": [
+              "pata",
+              "perro"
+            ],
+            "n_shared": 2,
+            "text": "Pregunta: ¿Cuándo una cojera de el perro es urgencia?\nRespuesta: Si no apoya la pata, hay inflamación grande, llanto de dolor o fue tras un golpe o atropello. Si solo cojea leve y apoya, pide cita pronto.",
+            "bonus": 0.15,
+            "score": 0.3495
+          }
+        ],
+        "rec_lexico": 0.0,
+        "respuesta": "Presiona con gasa limpia durante 10 minutos sin levantar para mirar. No uses torniquete salvo indicación veterinaria y acude a clínica. [extractivo]",
+        "pasajes": [
+          "Pregunta: Mi perro sangra mucho de una pata, ¿qué hago?\nRespuesta: Presiona con gasa limpia durante 10 minutos sin levantar para mirar. No uses torniquete salvo indicación veterinaria y acude a clínica.",
+          "Pregunta: ¿Cuándo una cojera de el perro es urgencia?\nRespuesta: Si no apoya la pata, hay inflamación grande, llanto de dolor o fue tras un golpe o atropello. Si solo cojea leve y apoya, pide cita pronto."
+        ]
+      }
+    },
+    {
+      "query": "cristobal colon comio perros",
+      "modo_a_sin_rag": {
+        "mode": "GENERATIVO_SIN_RAG",
+        "respuesta": "Síndrome de cada 3 meses, que puede causar cama a\nseguir el paciente es una inflamatoria."
+      },
+      "modo_b_con_rag": {
+        "mode": "RECHAZADO",
+        "decision": "SIN_EVIDENCIA",
+        "threshold": 0.18,
+        "candidatos": [
+          {
+            "doc": 218,
+            "raw_score": 0.1857,
+            "shared": [
+              "comio"
+            ],
+            "n_shared": 1,
+            "text": "Anamnesis:\nPaciente ingresa a servicio de urgencias ya que hace dos horas aproximadamente comió acido\nbórico aproximadamente un puñado de la sustancia, cuando llegaron a la casa la notaron muy\ntorpe se tropezaba con todo"
+          },
+          {
+            "doc": 1028,
+            "raw_score": 0.1497,
+            "shared": [
+              "comio"
+            ],
+            "n_shared": 1,
+            "text": "Pregunta: Mi perro comió chocolate, ¿qué hago?\nRespuesta: Acude de inmediato al veterinario con la etiqueta del producto. No induzcas el vómito en casa sin indicación profesional ni le des leche ni remedios caseros. Vigi"
+          },
+          {
+            "doc": 1024,
+            "raw_score": 0.1495,
+            "shared": [
+              "comio"
+            ],
+            "n_shared": 1,
+            "text": "Pregunta: Mi gato comió chocolate, ¿qué hago?\nRespuesta: Acude de inmediato al veterinario con la etiqueta del producto. No induzcas el vómito en casa sin indicación profesional ni le des leche ni remedios caseros. Vigil"
+          },
+          {
+            "doc": 1032,
+            "raw_score": 0.1489,
+            "shared": [
+              "comio"
+            ],
+            "n_shared": 1,
+            "text": "Pregunta: Mi vaca comió chocolate, ¿qué hago?\nRespuesta: Acude de inmediato al veterinario con la etiqueta del producto. No induzcas el vómito en casa sin indicación profesional ni le des leche ni remedios caseros. Vigil"
+          }
+        ],
+        "seleccionados": [],
+        "rec_lexico": null,
+        "respuesta": "No encontré información veterinaria relevante para responder esa pregunta en mi base. Pregunta sobre vacunas, desparasitación, alimentación, constantes o urgencias (intoxicaciones, convulsiones, sangrados).",
+        "pasajes": []
+      }
+    },
+    {
+      "query": "los dinosaurios comian perros?",
+      "modo_a_sin_rag": {
+        "mode": "GENERATIVO_SIN_RAG",
+        "respuesta": "Sí, frecuencia cardiaca 60 a 140 lpm, temperatura 38.3 a 39.2 °C. Medir en reposo y anotar en la ficha clínica."
+      },
+      "modo_b_con_rag": {
+        "mode": "RECHAZADO",
+        "decision": "FUERA_DE_AMBITO",
+        "threshold": 0.18,
+        "candidatos": [
+          {
+            "doc": 1982,
+            "raw_score": 0.3088,
+            "shared": [
+              "perros"
+            ],
+            "n_shared": 1,
+            "text": "terilizada\nVacunada y desparasitada al día\nSí, solemos ir al\nparque y allí juega\ncon otros perros del\nbarrio.\n¿Ha estado en contacto\ncon otros perros?"
+          },
+          {
+            "doc": 1420,
+            "raw_score": 0.2366,
+            "shared": [
+              "perros"
+            ],
+            "n_shared": 1,
+            "text": "Veterinaria perro. parvovirosis en perros: vómitos, diarrea hemorrágica y deshidratación grave en cachorros no vacunados. Hospitalización con fluidoterapia."
+          },
+          {
+            "doc": 1981,
+            "raw_score": 0.2281,
+            "shared": [
+              "perros"
+            ],
+            "n_shared": 1,
+            "text": "ter y otros (2009) describieron las causas más comunes de parada CP en\nperros y gatos:\n• Hipoxemia (36%)\n• Shock (18%)\n• Anemia (13%)\n• Arritmias (8%)"
+          },
+          {
+            "doc": 1670,
+            "raw_score": 0.2278,
+            "shared": [
+              "perros"
+            ],
+            "n_shared": 1,
+            "text": "existen varios compuestos que son adecuados para el control de\neste tipo de ácaros en perros, como lo son: los organofosforados, los piretroides, las"
+          }
+        ],
+        "seleccionados": [],
+        "rec_lexico": null,
+        "respuesta": "Eso está fuera de mi ámbito: solo respondo temas de salud animal (vacunas, desparasitación, alimentación, constantes, urgencias). Reformula tu pregunta sobre tu mascota.",
+        "pasajes": []
+      }
+    },
+    {
+      "query": "¿qué es la ehrlichiosis canina?",
+      "modo_a_sin_rag": {
+        "mode": "GENERATIVO_SIN_RAG",
+        "respuesta": "Sí, reduce camadas no deseadas y ciertos tumores. Requiere ayuno de 8 horas y control de la herida durante 10 días."
+      },
+      "modo_b_con_rag": {
+        "mode": "EXTRACTIVO",
+        "decision": "RECUPERA",
+        "threshold": 0.18,
+        "candidatos": [
+          {
+            "doc": 2020,
+            "raw_score": 0.2794,
+            "shared": [
+              "canina",
+              "ehrlichiosis",
+              "que"
+            ],
+            "n_shared": 3,
+            "text": "| Equine | Anemia | Treatment\nIntroducción\nLa ehrlichiosis y anaplasmosis son un grupo de enfermedades\nproducidas por una bacteria gram negativa intracelular obligada,\ntransmitida por garrapatas y clasific ada de acuerdo"
+          },
+          {
+            "doc": 1258,
+            "raw_score": 0.2194,
+            "shared": [
+              "canina",
+              "ehrlichiosis"
+            ],
+            "n_shared": 2,
+            "text": "Taylor, M., Coop, R., & Wall, R. (2016). Veterinary Parasitology, 4th edn: Wiley\nBlackwell.\nValencia, L. (2016). Revisión de tema en ehrlichiosis y hepatozoonosis canina; y\ncomparación con un posible caso de co-infección"
+          },
+          {
+            "doc": 365,
+            "raw_score": 0.1911,
+            "shared": [
+              "ehrlichiosis"
+            ],
+            "n_shared": 1,
+            "text": "Conclusiones y Recomendaciones\nLa Ehrlichiosis es una enfermedad infecciosa de importancia en la salud\npública por ser considerada una zoonosis emergente transmitida por la\npicadura de garrapatas; por esta razón deben se"
+          },
+          {
+            "doc": 1935,
+            "raw_score": 0.1897,
+            "shared": [
+              "ehrlichiosis",
+              "que"
+            ],
+            "n_shared": 2,
+            "text": "risticci es el único agente\nconocido que causa la ehrlichiosis monocítica equina, una enfermedad\nespontánea solamente descrita en los Estados Unidos y Canadá, en la\ncual ya se tiene vacuna disponible (The Americam Associ"
+          }
+        ],
+        "seleccionados": [
+          {
+            "doc": 2020,
+            "raw_score": 0.2794,
+            "shared": [
+              "canina",
+              "ehrlichiosis",
+              "que"
+            ],
+            "n_shared": 3,
+            "text": "| Equine | Anemia | Treatment\nIntroducción\nLa ehrlichiosis y anaplasmosis son un grupo de enfermedades\nproducidas por una bacteria gram negativa intracelular obligada,\ntransmitida por garrapatas y clasific ada de acuerdo",
+            "bonus": 0.0,
+            "score": 0.2794
+          },
+          {
+            "doc": 1258,
+            "raw_score": 0.2194,
+            "shared": [
+              "canina",
+              "ehrlichiosis"
+            ],
+            "n_shared": 2,
+            "text": "Taylor, M., Coop, R., & Wall, R. (2016). Veterinary Parasitology, 4th edn: Wiley\nBlackwell.\nValencia, L. (2016). Revisión de tema en ehrlichiosis y hepatozoonosis canina; y\ncomparación con un posible caso de co-infección",
+            "bonus": 0.0,
+            "score": 0.2194
+          }
+        ],
+        "rec_lexico": 0.0,
+        "respuesta": "| Equine | Anemia | Treatment\nIntroducción\nLa ehrlichiosis y anaplasmosis son un grupo de enfermedades\nproducidas por una bacteria gram negativa intracelular obligada,\ntransmitida por garrapatas y clasific ada de acuerdo con la especificidad\ndel hospedador y el tipo de célula sanguínea que es infectada por el\nparásito (Pritt et al., 2009). Algunos agentes etiológicos conocidos en\nveterinaria son: la Ehrlichia canis y E. chaffeensis (que produce la\nenfermedad denominada ehrlichiosis monocítica canina), Anaplasma\nphagocytophilum y E. ewingii que causan la ehrlichiosis granulocítica\ncanina; en caballos la Neorickettsia ristii (comúnmente llamada E. ristii)\nque produce la ehrlichiosis monocítica equina o fiebre de Potomac y la\nA. phagocytophilum o E. equi, que está involucrada con la ehrlichiosis\ngranulocítica equina y la fiebre petequial en rumiantes (OIE & CFSPH,\n2005; Waldridge, 2012). [extractivo]",
+        "pasajes": [
+          "| Equine | Anemia | Treatment\nIntroducción\nLa ehrlichiosis y anaplasmosis son un grupo de enfermedades\nproducidas por una bacteria gram negativa intracelular obligada,\ntransmitida por garrapatas y clasific ada de acuerdo",
+          "Taylor, M., Coop, R., & Wall, R. (2016). Veterinary Parasitology, 4th edn: Wiley\nBlackwell.\nValencia, L. (2016). Revisión de tema en ehrlichiosis y hepatozoonosis canina; y\ncomparación con un posible caso de co-infección"
+        ]
+      }
+    },
+    {
+      "query": "¿qué signos tiene un perro con ehrlichiosis?",
+      "modo_a_sin_rag": {
+        "mode": "GENERATIVO_SIN_RAG",
+        "respuesta": "Síndo debido a que la\nRespuesta: Si hay dificultad respiratoria, sangrado que no cede, convulsiones, abdomen hinchado o decaimiento grave. No esperes 24 horas."
+      },
+      "modo_b_con_rag": {
+        "mode": "EXTRACTIVO",
+        "decision": "RECUPERA",
+        "threshold": 0.18,
+        "candidatos": [
+          {
+            "doc": 1423,
+            "raw_score": 0.2165,
+            "shared": [
+              "perro",
+              "signos"
+            ],
+            "n_shared": 2,
+            "text": "Veterinaria perro. signos de alarma en perros: decaimiento, anorexia más de 24 h, vómitos repetidos, diarrea con sangre, dificultad respiratoria o fiebre (38.3 a 39.2 °C). Acudir a clínica."
+          },
+          {
+            "doc": 1412,
+            "raw_score": 0.1906,
+            "shared": [
+              "perro"
+            ],
+            "n_shared": 1,
+            "text": "Veterinaria perro. constantes normales en el perro: frecuencia cardiaca 60 a 140 lpm, temperatura 38.3 a 39.2 °C. Medir en reposo y anotar en la ficha clínica."
+          },
+          {
+            "doc": 1410,
+            "raw_score": 0.1798,
+            "shared": [
+              "perro"
+            ],
+            "n_shared": 1,
+            "text": "Veterinaria perro. alimentación de el perro: ración según peso (5 a 40 kg), agua fresca siempre. Evitar cebolla, ajo, chocolate, xilitol y uvas."
+          },
+          {
+            "doc": 1338,
+            "raw_score": 0.1774,
+            "shared": [
+              "perro"
+            ],
+            "n_shared": 1,
+            "text": "Urgencia veterinaria perro. atropello de el perro: muévelo lo mínimo, sobre superficie rígida, no des agua ni comida si está inconsciente y acude URGENTE."
+          }
+        ],
+        "seleccionados": [
+          {
+            "doc": 1423,
+            "raw_score": 0.2165,
+            "shared": [
+              "perro",
+              "signos"
+            ],
+            "n_shared": 2,
+            "text": "Veterinaria perro. signos de alarma en perros: decaimiento, anorexia más de 24 h, vómitos repetidos, diarrea con sangre, dificultad respiratoria o fiebre (38.3 a 39.2 °C). Acudir a clínica.",
+            "bonus": 0.15,
+            "score": 0.3665
+          }
+        ],
+        "rec_lexico": 0.1176,
+        "respuesta": "Veterinaria perro. signos de alarma en perros: decaimiento, anorexia más de 24 h, vómitos repetidos, diarrea con sangre, dificultad respiratoria o fiebre (38.3 a 39.2 °C). Acudir a clínica. [extractivo]",
+        "pasajes": [
+          "Veterinaria perro. signos de alarma en perros: decaimiento, anorexia más de 24 h, vómitos repetidos, diarrea con sangre, dificultad respiratoria o fiebre (38.3 a 39.2 °C). Acudir a clínica."
+        ]
+      }
+    }
+  ],
+  "tests": [
+    {
+      "id": "TEST 1",
+      "query": "¿Qué signos presenta un perro con ehrlichiosis?",
+      "tipo": "veterinaria",
+      "top_k": 2,
+      "threshold": 0.18,
+      "min_shared_terms": 2,
+      "scores": [
+        {
+          "doc": 1423,
+          "score": 0.3392,
+          "raw": 0.1892,
+          "shared": [
+            "perro",
+            "signos"
+          ]
+        },
+        {
+          "doc": 1632,
+          "score": 0.1912,
+          "raw": 0.1912,
+          "shared": [
+            "presenta",
+            "signos"
+          ]
+        }
+      ],
+      "candidatos_top": [
+        {
+          "doc": 1632,
+          "raw_score": 0.1912,
+          "shared": [
+            "presenta",
+            "signos"
+          ],
+          "n_shared": 2,
+          "text": "e signos clínicos, pacientes anictericos o en su mayoría se presenta la\ninstalación repentina de hemorragia con picos febriles durante al menos 4 días"
+        },
+        {
+          "doc": 1423,
+          "raw_score": 0.1892,
+          "shared": [
+            "perro",
+            "signos"
+          ],
+          "n_shared": 2,
+          "text": "Veterinaria perro. signos de alarma en perros: decaimiento, anorexia más de 24 h, vómitos repetidos, diarrea con sangre, dificultad respiratoria o fiebre (38.3 a 39.2 °C). Acudir a clínica."
+        },
+        {
+          "doc": 1412,
+          "raw_score": 0.1666,
+          "shared": [
+            "perro"
+          ],
+          "n_shared": 1,
+          "text": "Veterinaria perro. constantes normales en el perro: frecuencia cardiaca 60 a 140 lpm, temperatura 38.3 a 39.2 °C. Medir en reposo y anotar en la ficha clínica."
+        },
+        {
+          "doc": 1410,
+          "raw_score": 0.1571,
+          "shared": [
+            "perro"
+          ],
+          "n_shared": 1,
+          "text": "Veterinaria perro. alimentación de el perro: ración según peso (5 a 40 kg), agua fresca siempre. Evitar cebolla, ajo, chocolate, xilitol y uvas."
+        }
+      ],
+      "documento_recuperado": "Veterinaria perro. signos de alarma en perros: decaimiento, anorexia más de 24 h, vómitos repetidos, diarrea con sangre, dificultad respiratoria o fiebre (38.3 a 39.2 °C). Acudir a clínica.",
+      "modo_respuesta": "EXTRACTIVO",
+      "decision": "RECUPERA",
+      "respuesta_final": "Veterinaria perro. signos de alarma en perros: decaimiento, anorexia más de 24 h, vómitos repetidos, diarrea con sangre, dificultad respiratoria o fiebre (38.3 a 39.2 °C). Acudir a clínica. [extractivo]",
+      "esperado": "RECUPERAR información sobre ehrlichiosis/signos (doc con 'signos')",
+      "obtenido": "RECUPERA/EXTRACTIVO",
+      "result": "PASS"
+    },
+    {
+      "id": "TEST 2",
+      "query": "¿Qué información se debe recopilar en un perro con vómito?",
+      "tipo": "veterinaria",
+      "top_k": 2,
+      "threshold": 0.18,
+      "min_shared_terms": 2,
+      "scores": [
+        {
+          "doc": 1348,
+          "score": 0.4125,
+          "raw": 0.2625,
+          "shared": [
+            "perro",
+            "vomito"
+          ]
+        },
+        {
+          "doc": 1347,
+          "score": 0.3668,
+          "raw": 0.2168,
+          "shared": [
+            "perro",
+            "vomito"
+          ]
+        }
+      ],
+      "candidatos_top": [
+        {
+          "doc": 1348,
+          "raw_score": 0.2625,
+          "shared": [
+            "perro",
+            "vomito"
+          ],
+          "n_shared": 2,
+          "text": "Urgencia veterinaria perro. torsión gástrica en el perro (razas grandes): abdomen hinchado y arcadas sin vómito. Urgencia quirúrgica: acude de inmediato."
+        },
+        {
+          "doc": 1347,
+          "raw_score": 0.2168,
+          "shared": [
+            "perro",
+            "vomito"
+          ],
+          "n_shared": 2,
+          "text": "Urgencia veterinaria perro. sospecha de envenenamiento en perros: recoge posible resto del producto, no provoques el vómito por tu cuenta y acude URGENTE al veterinario."
+        },
+        {
+          "doc": 1170,
+          "raw_score": 0.2149,
+          "shared": [
+            "informacion",
+            "perro",
+            "que",
+            "vomito"
+          ],
+          "n_shared": 4,
+          "text": "Se\ntrata de la información específica sobre un caso\nque vamos a obtener al realizar una serie de pre -\nguntas al propietario del animal. Por ejemplo, la\nedad del animal, si está o no vacunado, cuándo\nempezaron los síntom"
+        },
+        {
+          "doc": 1082,
+          "raw_score": 0.212,
+          "shared": [
+            "perro",
+            "que",
+            "vomito"
+          ],
+          "n_shared": 3,
+          "text": "Pregunta: ¿Qué hago si sospecho que el perro se ha envenenado?\nRespuesta: Recoge restos del posible producto, no provoques el vómito por tu cuenta y acude URGENTE al veterinario con el envase si lo tienes."
+        }
+      ],
+      "documento_recuperado": "Urgencia veterinaria perro. torsión gástrica en el perro (razas grandes): abdomen hinchado y arcadas sin vómito. Urgencia quirúrgica: acude de inmediato.",
+      "modo_respuesta": "EXTRACTIVO",
+      "decision": "RECUPERA",
+      "respuesta_final": "Urgencia veterinaria perro. torsión gástrica en el perro (razas grandes): abdomen hinchado y arcadas sin vómito. Urgencia quirúrgica: acude de inmediato. [extractivo]",
+      "esperado": "RECUPERAR información sobre vómito/historia clínica",
+      "obtenido": "RECUPERA/EXTRACTIVO",
+      "result": "PASS"
+    },
+    {
+      "id": "TEST 3",
+      "query": "¿Cuál es la capital de Francia?",
+      "tipo": "fuera_del_dominio",
+      "top_k": 2,
+      "threshold": 0.18,
+      "min_shared_terms": 2,
+      "scores": [],
+      "candidatos_top": [
+        {
+          "doc": 264,
+          "raw_score": 0.145,
+          "shared": [
+            "capital"
+          ],
+          "n_shared": 1,
+          "text": "CARACTERÍSTICA GENERAL DEL SITIO DE PRACTICA\nLa practica empresarial se llevo acabo en la Clínica Veterinaria Animal´s Center en Bogotá,\nque es el centro del país, en la cordillera oriental, la capital del país tiene una"
+        },
+        {
+          "doc": 613,
+          "raw_score": 0.0914,
+          "shared": [
+            "francia"
+          ],
+          "n_shared": 1,
+          "text": "Etiología\nEl Hepatozoon canis pertenece al Phylum Apicomplexa, Clase Sporozoea, Orden\nEucoccidia, Familia Haemogragarinidae, Género Hepatozoon, Especie canis; este parásito\nse encuentra dentro del monocito y el neutró fi"
+        },
+        {
+          "doc": 1621,
+          "raw_score": 0.0734,
+          "shared": [
+            "cual"
+          ],
+          "n_shared": 1,
+          "text": "e es\nbueno para la atención de urgencias\nveterinarias.\nü Diversidad de médicos por lo cual se\ntienen varios puntos de vista para\ntratar los pacientes."
+        },
+        {
+          "doc": 1812,
+          "raw_score": 0.0623,
+          "shared": [
+            "cual"
+          ],
+          "n_shared": 1,
+          "text": "meros se encargarán de hacer firmar un consentimiento\ninformado al propietario en el cual se le explicara los procedimientos que se le van a realizar,"
+        }
+      ],
+      "documento_recuperado": null,
+      "modo_respuesta": "RECHAZADO",
+      "decision": "SIN_EVIDENCIA",
+      "respuesta_final": "No encontré información veterinaria relevante para responder esa pregunta en mi base. Pregunta sobre vacunas, desparasitación, alimentación, constantes o urgencias (intoxicaciones, convulsiones, sangrados).",
+      "esperado": "NO recuperar (RECHAZADO), nada de envenenamiento",
+      "obtenido": "SIN_EVIDENCIA/RECHAZADO",
+      "result": "PASS"
+    },
+    {
+      "id": "TEST 4",
+      "query": "¿Los dinosaurios comían perros?",
+      "tipo": "fuera_del_dominio",
+      "top_k": 2,
+      "threshold": 0.18,
+      "min_shared_terms": 2,
+      "scores": [],
+      "candidatos_top": [
+        {
+          "doc": 1982,
+          "raw_score": 0.3088,
+          "shared": [
+            "perros"
+          ],
+          "n_shared": 1,
+          "text": "terilizada\nVacunada y desparasitada al día\nSí, solemos ir al\nparque y allí juega\ncon otros perros del\nbarrio.\n¿Ha estado en contacto\ncon otros perros?"
+        },
+        {
+          "doc": 1420,
+          "raw_score": 0.2366,
+          "shared": [
+            "perros"
+          ],
+          "n_shared": 1,
+          "text": "Veterinaria perro. parvovirosis en perros: vómitos, diarrea hemorrágica y deshidratación grave en cachorros no vacunados. Hospitalización con fluidoterapia."
+        },
+        {
+          "doc": 1981,
+          "raw_score": 0.2281,
+          "shared": [
+            "perros"
+          ],
+          "n_shared": 1,
+          "text": "ter y otros (2009) describieron las causas más comunes de parada CP en\nperros y gatos:\n• Hipoxemia (36%)\n• Shock (18%)\n• Anemia (13%)\n• Arritmias (8%)"
+        },
+        {
+          "doc": 1670,
+          "raw_score": 0.2278,
+          "shared": [
+            "perros"
+          ],
+          "n_shared": 1,
+          "text": "existen varios compuestos que son adecuados para el control de\neste tipo de ácaros en perros, como lo son: los organofosforados, los piretroides, las"
+        }
+      ],
+      "documento_recuperado": null,
+      "modo_respuesta": "RECHAZADO",
+      "decision": "FUERA_DE_AMBITO",
+      "respuesta_final": "Eso está fuera de mi ámbito: solo respondo temas de salud animal (vacunas, desparasitación, alimentación, constantes, urgencias). Reformula tu pregunta sobre tu mascota.",
+      "esperado": "NO recuperar envenenamiento (RECHAZADO)",
+      "obtenido": "FUERA_DE_AMBITO/RECHAZADO",
+      "result": "PASS"
+    },
+    {
+      "id": "TEST 5",
+      "query": "¿Quién fue Cristóbal Colón?",
+      "tipo": "historia",
+      "top_k": 2,
+      "threshold": 0.18,
+      "min_shared_terms": 2,
+      "scores": [],
+      "candidatos_top": [
+        {
+          "doc": 18,
+          "raw_score": 0.1461,
+          "shared": [
+            "colon"
+          ],
+          "n_shared": 1,
+          "text": "), massagem cardíaca e oxigenoterapia. Uma hora após a\nressuscitação, o animal veio a óbito, com tentativas seguidas de novas ressuscitação sem êxito. Figura 2. Hepatomegalia e contorno aumentado da vesícula biliar, pres"
+        },
+        {
+          "doc": 161,
+          "raw_score": 0.1122,
+          "shared": [
+            "quien"
+          ],
+          "n_shared": 1,
+          "text": "A. Álvarez y otros\n58 An. Sist. Sanit. Navar. 2010, V ol. 33, Suplemento 1\nde la demanda, la cual depende tanto de\ndeterminantes externos (afluencia) como\ninternos (propia capacidad del servicio,\ndemora de exploraciones,"
+        },
+        {
+          "doc": 638,
+          "raw_score": 0.0971,
+          "shared": [
+            "colon"
+          ],
+          "n_shared": 1,
+          "text": "Figura 1. Vesícula biliar repleta demonstrando massa em região interna com ecogenicidade\nheterogênea.\nNa radiografia foi observado hepatomegalia e contorno aumentado da vesícula bi liar,\npresença de fecalomas e alças int"
+        },
+        {
+          "doc": 1716,
+          "raw_score": 0.0937,
+          "shared": [
+            "quien"
+          ],
+          "n_shared": 1,
+          "text": "ifevet\nCausas de Parada Cardiopulmonar\n¿A quién practicamos técnicas de reanimación cardiopulmonar? Es importante conocer los deseos del propietario con respecto a la realización por\nlo que se recomienda obtener un códig"
+        }
+      ],
+      "documento_recuperado": null,
+      "modo_respuesta": "RECHAZADO",
+      "decision": "SIN_EVIDENCIA",
+      "respuesta_final": "No encontré información veterinaria relevante para responder esa pregunta en mi base. Pregunta sobre vacunas, desparasitación, alimentación, constantes o urgencias (intoxicaciones, convulsiones, sangrados).",
+      "esperado": "NO recuperar información veterinaria (RECHAZADO)",
+      "obtenido": "SIN_EVIDENCIA/RECHAZADO",
+      "result": "PASS"
+    },
+    {
+      "id": "TEST 6",
+      "query": "¿Qué es la ehrlichiosis canina?",
+      "tipo": "veterinaria",
+      "top_k": 2,
+      "threshold": 0.18,
+      "min_shared_terms": 2,
+      "scores": [
+        {
+          "doc": 2020,
+          "score": 0.2794,
+          "raw": 0.2794,
+          "shared": [
+            "canina",
+            "ehrlichiosis",
+            "que"
+          ]
+        },
+        {
+          "doc": 1258,
+          "score": 0.2194,
+          "raw": 0.2194,
+          "shared": [
+            "canina",
+            "ehrlichiosis"
+          ]
+        }
+      ],
+      "candidatos_top": [
+        {
+          "doc": 2020,
+          "raw_score": 0.2794,
+          "shared": [
+            "canina",
+            "ehrlichiosis",
+            "que"
+          ],
+          "n_shared": 3,
+          "text": "| Equine | Anemia | Treatment\nIntroducción\nLa ehrlichiosis y anaplasmosis son un grupo de enfermedades\nproducidas por una bacteria gram negativa intracelular obligada,\ntransmitida por garrapatas y clasific ada de acuerdo"
+        },
+        {
+          "doc": 1258,
+          "raw_score": 0.2194,
+          "shared": [
+            "canina",
+            "ehrlichiosis"
+          ],
+          "n_shared": 2,
+          "text": "Taylor, M., Coop, R., & Wall, R. (2016). Veterinary Parasitology, 4th edn: Wiley\nBlackwell.\nValencia, L. (2016). Revisión de tema en ehrlichiosis y hepatozoonosis canina; y\ncomparación con un posible caso de co-infección"
+        },
+        {
+          "doc": 365,
+          "raw_score": 0.1911,
+          "shared": [
+            "ehrlichiosis"
+          ],
+          "n_shared": 1,
+          "text": "Conclusiones y Recomendaciones\nLa Ehrlichiosis es una enfermedad infecciosa de importancia en la salud\npública por ser considerada una zoonosis emergente transmitida por la\npicadura de garrapatas; por esta razón deben se"
+        },
+        {
+          "doc": 1935,
+          "raw_score": 0.1897,
+          "shared": [
+            "ehrlichiosis",
+            "que"
+          ],
+          "n_shared": 2,
+          "text": "risticci es el único agente\nconocido que causa la ehrlichiosis monocítica equina, una enfermedad\nespontánea solamente descrita en los Estados Unidos y Canadá, en la\ncual ya se tiene vacuna disponible (The Americam Associ"
+        }
+      ],
+      "documento_recuperado": "| Equine | Anemia | Treatment\nIntroducción\nLa ehrlichiosis y anaplasmosis son un grupo de enfermedades\nproducidas por una bacteria gram negativa intracelular obligada,\ntransmitida por garrapatas y clasific ada de acuerdo con la especificidad\ndel hospedador y el tipo de célula sanguínea que es infect",
+      "modo_respuesta": "EXTRACTIVO",
+      "decision": "RECUPERA",
+      "respuesta_final": "| Equine | Anemia | Treatment\nIntroducción\nLa ehrlichiosis y anaplasmosis son un grupo de enfermedades\nproducidas por una bacteria gram negativa intracelular obligada,\ntransmitida por garrapatas y clasific ada de acuerdo con la especificidad\ndel hospedador y el tipo de célula sanguínea que es infectada por el\nparásito (Pritt et al., 2009). Algunos agentes etiológicos conocidos en\nveterinaria son: la Ehrlichia canis y E. chaffeensis (que produce la\nenfermedad denominada ehrlichiosis monocítica canina), Anaplasma\nphagocytophilum y E. ewingii que causan la ehrlichiosis granulocítica\ncanina; en caballos la Neorickettsia ristii (comúnmente llamada E. ristii)\nque produce la ehrlichiosis monocítica equina o fiebre de Potomac y la\nA. phagocytophilum o E. equi, que está involucrada con la ehrlichiosis\ngranulocítica equina y la fiebre petequial en rumiantes (OIE & CFSPH,\n2005; Waldridge, 2012). [extractivo]",
+      "esperado": "RECUPERAR información relevante (doc con 'ehrlichiosis')",
+      "obtenido": "RECUPERA/EXTRACTIVO",
+      "result": "PASS"
+    },
+    {
+      "id": "TEST 7",
+      "query": "mi can vomita sangre y tiene diarrea",
+      "tipo": "veterinaria-parafrasis",
+      "top_k": 2,
+      "threshold": 0.18,
+      "min_shared_terms": 2,
+      "scores": [
+        {
+          "doc": 1420,
+          "score": 0.7109,
+          "raw": 0.7109,
+          "shared": []
+        },
+        {
+          "doc": 1344,
+          "score": 0.6816,
+          "raw": 0.6816,
+          "shared": []
+        }
+      ],
+      "candidatos_top": [
+        {
+          "doc": 1423,
+          "raw_score": 0.17,
+          "shared": [
+            "diarrea",
+            "sangre"
+          ],
+          "n_shared": 2,
+          "text": "Veterinaria perro. signos de alarma en perros: decaimiento, anorexia más de 24 h, vómitos repetidos, diarrea con sangre, dificultad respiratoria o fiebre (38.3 a 39.2 °C). Acudir a clínica."
+        },
+        {
+          "doc": 1408,
+          "raw_score": 0.1697,
+          "shared": [
+            "diarrea",
+            "sangre"
+          ],
+          "n_shared": 2,
+          "text": "Veterinaria gato. signos de alarma en gatos: decaimiento, anorexia más de 24 h, vómitos repetidos, diarrea con sangre, dificultad respiratoria o fiebre (38.0 a 39.2 °C). Acudir a clínica."
+        },
+        {
+          "doc": 1378,
+          "raw_score": 0.1653,
+          "shared": [
+            "diarrea",
+            "sangre"
+          ],
+          "n_shared": 2,
+          "text": "Veterinaria caballo. signos de alarma en caballos: decaimiento, anorexia más de 24 h, vómitos repetidos, diarrea con sangre, dificultad respiratoria o fiebre (37.5 a 38.5 °C). Acudir a clínica."
+        },
+        {
+          "doc": 1393,
+          "raw_score": 0.1651,
+          "shared": [
+            "diarrea",
+            "sangre"
+          ],
+          "n_shared": 2,
+          "text": "Veterinaria conejo. signos de alarma en conejos: decaimiento, anorexia más de 24 h, vómitos repetidos, diarrea con sangre, dificultad respiratoria o fiebre (38.5 a 40.0 °C). Acudir a clínica."
+        }
+      ],
+      "documento_recuperado": "Veterinaria perro. parvovirosis en perros: vómitos, diarrea hemorrágica y deshidratación grave en cachorros no vacunados. Hospitalización con fluidoterapia.",
+      "modo_respuesta": "EXTRACTIVO",
+      "decision": "RECUPERA",
+      "respuesta_final": "URGENTE: si hay intoxicación, convulsiones, sangrado, dificultad respiratoria o decaimiento grave, acude al veterinario cuanto antes. No mediques por tu cuenta.\n\nVeterinaria perro. parvovirosis en perros: vómitos, diarrea hemorrágica y deshidratación grave en cachorros no vacunados. Hospitalización con fluidoterapia. [extractivo]",
+      "esperado": "RESCATE semántico (TF-IDF rechaza, MiniLM rescata parvovirosis)",
+      "obtenido": "RECUPERA/EXTRACTIVO",
+      "result": "PASS"
+    }
+  ],
+  "resumen": {
+    "pass": 7,
+    "fail": 0,
+    "total": 7
+  }
+}
