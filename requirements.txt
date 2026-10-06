@@ -9,6 +9,11 @@ streamlit>=1.30
 matplotlib>=3.8
 safetensors>=0.4
 psutil>=5.9
+# API para Vercel (FastAPI)
+fastapi>=0.110
+uvicorn>=0.29
+pydantic>=2.7
+pydantic-settings>=2.3
 # Ingesta de PDFs reales (src/data/ingest_pdfs.py)
 pypdf>=4.0
 # RAG hibrido (src/rag/embeddings.py) + BPE propio (src/tokenizer/train_bpe.py)
