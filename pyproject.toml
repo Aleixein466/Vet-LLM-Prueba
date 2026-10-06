@@ -19,9 +19,6 @@ dependencies = [
     "tokenizers>=0.20",
 ]
 
-[tool.vercel]
-entrypoint = "api/index.py"
-
 [build-system]
 requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
