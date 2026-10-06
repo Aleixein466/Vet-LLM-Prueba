@@ -1,8 +1,8 @@
 {
-  "buildCommand": "pip install -r requirements.txt",
+  "buildCommand": "pip install -r requirements-vercel.txt",
   "outputDirectory": ".",
   "devCommand": "uvicorn api.vet_api:app --reload --port 8000",
-  "installCommand": "pip install -r requirements.txt",
+  "installCommand": "pip install -r requirements-vercel.txt",
   "framework": "python",
   "functions": {
     "api/index.py": {

@@ -16,7 +16,6 @@ from contextlib import asynccontextmanager
 # Import project modules
 from app.utils.model_loader import listar_checkpoints, cargar_modelo, get_default_checkpoint
 from app.utils.generation import generar, es_urgente, ADVERTENCIA
-from app.utils import chats
 from src.rag.retriever import TfidfIndex
 
 # ── Global state ────────────────────────────────────────────────────────────
@@ -255,7 +254,7 @@ async def clinical(req: ClinicalRequest):
         
         campos = {
             "Especie": req.especie, "Raza": req.raza, "Edad": req.edad, "Sexo": req.sexo,
-            "Peso": req.peso, "Motivo": req.motivo, "Antecedentes": req.antecendentes,
+            "Peso": req.peso, "Motivo": req.motivo, "Antecedentes": req.antecedentes,
             "Signos": req.signos, "Temperatura": req.temperatura, "FC": req.fc,
             "FR": req.fr, "Laboratorio": req.laboratorio, "Tratamientos": req.tratamientos
         }
