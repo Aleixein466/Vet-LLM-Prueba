@@ -70,7 +70,8 @@ class TfidfIndex:
         (path / "docs.json").write_text(json.dumps(self.docs, ensure_ascii=False), encoding="utf-8")
 
     @classmethod
-    def load(cls, path: Path) -> "TfidfIndex":
+    def load(cls, path: Path | str) -> "TfidfIndex":
+        path = Path(path)
         z = np.load(path / "tfidf.npz")
         idx = cls.__new__(cls)
         idx.mat, idx.idf = z["mat"], z["idf"]

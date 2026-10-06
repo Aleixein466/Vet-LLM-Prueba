@@ -46,6 +46,13 @@ desktop.ini
 .vscode/
 *.swp
 
+# Outputs de entrenamiento / evaluación
+outputs/
+*.log
+
+# Archivos de ejecución local
+*.bat
+
 # Entornos locales
 .env
 .env.local

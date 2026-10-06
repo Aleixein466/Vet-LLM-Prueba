@@ -1,0 +1,27 @@
+[project]
+name = "vet-tiny-llm"
+version = "0.1.0"
+description = "VET-TINY-GPT: Veterinary LLM with Streamlit"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "torch>=2.1",
+    "tiktoken>=0.7",
+    "pyyaml>=6.0",
+    "tqdm>=4.66",
+    "numpy>=1.26",
+    "streamlit>=1.30",
+    "matplotlib>=3.8",
+    "safetensors>=0.4",
+    "psutil>=5.9",
+    "pypdf>=4.0",
+    "sentence-transformers>=3.0",
+    "tokenizers>=0.20",
+]
+
+[tool.vercel]
+entrypoint = "api/index.py"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"

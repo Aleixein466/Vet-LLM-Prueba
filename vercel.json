@@ -1,0 +1,13 @@
+{
+  "buildCommand": "pip install -r requirements.txt",
+  "outputDirectory": ".",
+  "devCommand": "streamlit run app/streamlit_app.py",
+  "installCommand": "pip install -r requirements.txt",
+  "framework": "streamlit",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/api/index.py"
+    }
+  ]
+}
